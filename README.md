@@ -44,7 +44,7 @@ docker compose up
 
 To create a superuser to access the Django admin follow these steps.
 
-1.  Run the below command and follow the in terminal instructions:
+1.  Run the below command and follow the instructions in the terminal:
 
 ```sh
 docker compose run --rm app sh -c "python manage.py createsuperuser"
