@@ -42,4 +42,15 @@ data "aws_iam_policy_document" "tf_backend"{
     }
 }
 
+resource "aws_iam_policy" "tf_backend" {
+    name = "${aws_iam_user.cd.name}-tf-s3-dyanmodb"
+    description = "allow user to use S3 and DynamoDB for TF backend resources"
+    policy = data.aws_iam_policy_document.tf_backend.json
+}
+
+resource "aws_iam_user_policy_attachment" "tf_backend" {
+    user = aws_iam_user.cd.name
+    policy_arn = aws_iam_policy.tf_backend.arn
+}
+
 
