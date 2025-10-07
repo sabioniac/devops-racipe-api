@@ -1,3 +1,4 @@
+#########
 terraform {
     required_providers{
         aws = {
@@ -22,16 +23,13 @@ terraform {
 
    default_tags {
     tags = {
-      Environment = Terraform_workspace
-      auto-delete = no
+      Environment = Terraform.Environment
       ManageBy = "Terraform/deploy"
     }
      
   }
 }
-
 locals{
   prefix ="${var.prefix}-${terraform.workspace}"
-}
-
+}  
 data "aws_region" "current" {}
