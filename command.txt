@@ -1,0 +1,1 @@
+docker run --rm -v "$(pwd):/workspace" -w /workspace/setup hashicorp/terraform init

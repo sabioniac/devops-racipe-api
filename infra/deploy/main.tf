@@ -8,7 +8,8 @@ terraform {
       
       backend "s3" {
         bucket = "devops-terrafrom-state"
-        key = "devops-tf-state-setup"
+        key = "devops-tf-state-deploy"
+        workspace_key_prefix = "tf-state-deploy-env"
         region = "us-east-1"
         encrypt = true
         dynamodb_table = "devops-lockTable"
@@ -23,8 +24,14 @@ terraform {
     tags = {
       Environment = Terraform_workspace
       auto-delete = no
-      ManageBy = "Terraform/Setup"
+      ManageBy = "Terraform/deploy"
     }
      
   }
 }
+
+locals{
+  prefix ="${var.prefix}-${terraform.workspace}"
+}
+
+data "aws_region" "current" {}
